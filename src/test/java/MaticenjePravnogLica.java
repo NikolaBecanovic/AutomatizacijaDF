@@ -62,6 +62,33 @@ public class MaticenjePravnogLica {
     By establishmentDate = By.xpath("//*[@id='mat-input-3']");
     By dugmeComplete = By.xpath("//span[text()='Complete']");
 
+    //Forma Registration document
+
+    By vrsta = By.xpath("//span[@class='mat-select-min-line ng-tns-c236-49 ng-star-inserted']");
+    By registrationDocumentNumber = By.xpath("//*[@id='mat-input-5']");
+    By issuingDate = By.xpath("//*[@id='mat-input-7']");
+
+    //Forma Legal address
+
+    By mesto = By.xpath("//*[@id='mat-input-17']");
+    By popUp = By.xpath("(//span[@class='ng-star-inserted'])[2]");
+    By street = By.xpath("//*[@id='mat-input-18']");
+    By buildingNo = By.xpath("//*[@id='mat-input-10']");
+
+    //Forma Landline phone
+
+    By areaCode = By.xpath("//*[@id='mat-input-21']");
+    By number = By.xpath("//*[@id='mat-input-22']");
+
+    //Forma email
+
+    By email = By.xpath("//*[@id='mat-input-25']");
+
+    //Forma Tax profile
+
+    By taxNumber = By.xpath("//*[@id='mat-input-27']");
+
+
 
 
 
@@ -130,12 +157,70 @@ public class MaticenjePravnogLica {
 
      // stranica AML score
 
-    Thread.sleep(5000);
+    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
-    driver.findElement(dugmeComplete);
+    driver.findElement(dugmeComplete).click();
 
 
     // forma Registration document
+
+    wait.until(ExpectedConditions.elementToBeClickable(vrsta));
+    wait.until(ExpectedConditions.elementToBeClickable(registrationDocumentNumber));
+    driver.findElement(registrationDocumentNumber).click();
+    driver.findElement(registrationDocumentNumber).sendKeys("12ds3223e12");
+    wait.until(ExpectedConditions.elementToBeClickable(issuingDate));
+    driver.findElement(issuingDate).click();
+    driver.findElement(issuingDate).sendKeys("1. 3. 2023.");
+    Thread.sleep(7000);
+    wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
+    driver.findElement(dugmeComplete).click();
+
+    //forma Legal address
+
+    wait.until(ExpectedConditions.elementToBeClickable(mesto));
+    driver.findElement(mesto).click();
+    driver.findElement(mesto).sendKeys("NOVI SAD");
+    //ovdje klikcemo na pop up kad ukucamo u polju mesto/ulica
+    wait.until(ExpectedConditions.elementToBeClickable(popUp));
+    driver.findElement(popUp).click();
+    wait.until(ExpectedConditions.elementToBeClickable(street));
+    driver.findElement(street).click();
+    driver.findElement(street).sendKeys("AKSENTIJA MAKSIMOVIĆA");
+    driver.findElement(popUp).click();
+    wait.until(ExpectedConditions.elementToBeClickable(buildingNo));
+    driver.findElement(buildingNo).click();
+    driver.findElement(buildingNo).sendKeys("188");
+    wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
+    driver.findElement(dugmeComplete).click();
+
+    //forma Landline phone
+
+    wait.until(ExpectedConditions.elementToBeClickable(areaCode));
+    driver.findElement(areaCode).click();
+    driver.findElement(areaCode).sendKeys("13");
+    wait.until(ExpectedConditions.elementToBeClickable(number));
+    driver.findElement(number).click();
+    driver.findElement(number).sendKeys("1243435");
+    wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
+    driver.findElement(dugmeComplete).click();
+
+    //forma Email
+
+    wait.until(ExpectedConditions.elementToBeClickable(email));
+    driver.findElement(email).click();
+    driver.findElement(email).sendKeys("rere2@re.re");
+    wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
+    driver.findElement(dugmeComplete).click();
+
+    //forma Tax profile
+
+    wait.until(ExpectedConditions.elementToBeClickable(taxNumber));
+    driver.findElement(taxNumber).click();
+    driver.findElement(taxNumber).sendKeys("");
+
+
+
+
 
 
 

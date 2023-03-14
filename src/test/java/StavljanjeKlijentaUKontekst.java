@@ -1,4 +1,6 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,11 +16,13 @@ public class StavljanjeKlijentaUKontekst {
     public void StavljanjeKlijentaUKontekst(){
 
 
+
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, 190);
         Actions actions = new Actions(driver);
-        By searchIcon = By.xpath("//mat-icon[text()='search']");
+        By searchIcon;
+        searchIcon = By.xpath("//mat-icon[text()='search']");
         By searchField = By.xpath("//input[@data-placeholder='Search customers...']");
         By clientPopUp = By.xpath("//div[@class='customer-info-component ng-star-inserted']");
         By okButtonOnClientPopUp = By.xpath("//span[text()='Ok']");
