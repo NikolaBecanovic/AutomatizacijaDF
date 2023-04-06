@@ -4,8 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
+
+
 
 public class E2EOtvaranjeRacuna {
 
@@ -13,10 +17,13 @@ public class E2EOtvaranjeRacuna {
 
     public void OtvaranjeRacuna()  throws  Exception{
 
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--remote-allow-origins=*");
     WebDriverManager.chromedriver().setup();
-    WebDriver driver = new ChromeDriver();
-    WebDriverWait wait = new WebDriverWait(driver, 70);
+    WebDriver driver = new ChromeDriver(options);
+    WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(60));
     JavascriptExecutor js = (JavascriptExecutor) driver;
+
 
     //LOKATORI
 
@@ -40,34 +47,35 @@ public class E2EOtvaranjeRacuna {
 
     //racuni pravnih lica
 
-    By racuniPravnaLica = By.xpath("//*[@id=\"DO-CURRENT-ACCOUNTS-LEproductDetails\"]/span[1]");
-    By dinarskiPlatniPromet = By.xpath("//*[@id=\"productDO-CURRENT-ACCOUNTS-RSD-LE\"]/mat-card-actions/button/span[1]");
-    By osnovniRacun = By.xpath("//*[@id=\"productDO-CA-LE\"]/mat-card-actions/button");
-    By uslovi = By.xpath("//*[@id=\"applyForProductButton\"]/span[1]");
+    By racuniPravnaLica = By.xpath("//*[@id='DO-CURRENT-ACCOUNTS-LEproductDetails']/span[1]");
+    By dinarskiPlatniPromet = By.xpath("//*[@id='productDO-CURRENT-ACCOUNTS-RSD-LE']/mat-card-actions/button/span[1]");
+    By osnovniRacun = By.xpath("//*[@id='productDO-CA-LE']/mat-card-actions/button");
+    By uslovi = By.xpath("//*[@id='applyForProductButton']/span[1]");
 
     //promjena jezika
 
-    By promenaJezika = By.xpath("//*[@id=\"mat-select-value-1\"]/span/mat-select-trigger");
-    By promenaJezikaSrpski = By.xpath("//*[@id=\"mat-option-2\"]/span");
+    By promenaJezika = By.xpath("//*[@id='mat-select-value-1']/span/mat-select-trigger");
+    By promenaJezikaSrpski = By.xpath("//span[text()=' Srpski ']");
 
     //promjena role
 
     By promenaRole = By.xpath("(//p[@class='mat-tooltip-trigger user-info-display'])[1]");
-    By promenaRoleDirektor = By.xpath("//*[@id=\"mat-select-value-7\"]/span/span");
-    By promenaRoleBranchManager = By.xpath("//*[@id=\"Branch manager\"]/span");
+    By promenaRoleDirektor = By.xpath("//span[text()='Direktor Odeljenja za naplatu spornih potraživanja']");
+    By promenaRoleBranchManager = By.xpath("//span[text()=' Branch manager ']");
 
     //taskovi
+
     By informacijaCrmTask = By.xpath("//span[text()=' Informacija CRM  - Dodeljeno je Vama ']");
     By dugmeComplete = By.xpath("//span[text()='COMPLETE']");
-    By togglePecat = By.xpath("//*[@id=\"isDiferent\"]");
-    By izborZakonskogZastupanja = By.xpath("//*[@id='mat-select-value-17']/span");
+    By togglePecat = By.xpath("//*[@id='isDiferent']");
+    By izborZakonskogZastupanja = By.xpath("//div[@class='mat-form-field-infix ng-tns-c121-199']");
     By pojedinacnoZastupanje = By.xpath("//span[text()=' Pojedinačno zastupanje']");
     By dodajteZastupnikaEvidentiranogUCif = By.xpath("//span[text()='Dodajte zastupnika evidentiranog u CIF']");
-    By dodajteZastupnika = By.xpath("//*[@id=\"mat-select-value-19\"]/span");
+    By dodajteZastupnika = By.xpath("//span[@class='mat-select-placeholder mat-select-min-line ng-tns-c236-203 ng-star-inserted']");
     By biranjeZastupnika = By.xpath("(//span[@class='ng-star-inserted'])[1]");
     By dodajteZastupnikaDugme = By.xpath("//span[text()='DODAJTE ZASTUPNIKA']");
     By zahtevi = By.xpath("//span[text()='Zahtevi']");
-    By skipKyc = By.xpath("//span[@class='mat-slide-toggle-thumb']");
+    By skipKyc = By.xpath("//span[@class='mat-slide-toggle-bar mat-slide-toggle-bar-no-side-margin']");
 
 
 
@@ -98,7 +106,7 @@ public class E2EOtvaranjeRacuna {
     driver.findElement(promenaRoleDirektor).click();
     wait.until(ExpectedConditions.presenceOfElementLocated(promenaRoleBranchManager));
     driver.findElement(promenaRoleBranchManager).click();
-    driver.findElement(By.xpath("//*[@id=\"roleSelectionCancelButton\"]/span[1]")).click();
+    driver.findElement(By.xpath("//*[@id='roleSelectionCancelButton']/span[1]")).click();
 
     //ulazak u katalog proizvoda
 
@@ -129,6 +137,7 @@ public class E2EOtvaranjeRacuna {
     //TASKOVI
 
     //Informacija za Crm
+
     wait.until(ExpectedConditions.elementToBeClickable(informacijaCrmTask));
     driver.findElement(informacijaCrmTask).click();
 
@@ -136,24 +145,27 @@ public class E2EOtvaranjeRacuna {
     driver.findElement(dugmeComplete).click();
 
     //Izbor računa za naplatu naknada
-    Thread.sleep(5000);
+
+    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 
     //Informacija za Crm
 
-    Thread.sleep(8000);
+    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 
     //Prikaz detatalja racuna sa Odlukom o pecatu
 
+    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(togglePecat));
     driver.findElement(togglePecat).click();
     driver.findElement(dugmeComplete).click();
 
     //Izbor tipa zakonskog zastupanja
 
+    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(izborZakonskogZastupanja));
     driver.findElement(izborZakonskogZastupanja).click();
     driver.findElement(pojedinacnoZastupanje).click();
@@ -199,11 +211,12 @@ public class E2EOtvaranjeRacuna {
     driver.findElement(dugmeComplete).click();
 
     //Skip KYC
-    Thread.sleep(8000);
+
+    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(skipKyc));
     driver.findElement(skipKyc).click();
 
-    Thread.sleep(15000);
+    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 

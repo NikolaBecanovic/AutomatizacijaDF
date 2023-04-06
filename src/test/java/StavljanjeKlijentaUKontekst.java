@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
 public class StavljanjeKlijentaUKontekst {
 
@@ -19,10 +20,9 @@ public class StavljanjeKlijentaUKontekst {
 
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
-        WebDriverWait wait = new WebDriverWait(driver, 190);
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(60));
         Actions actions = new Actions(driver);
-        By searchIcon;
-        searchIcon = By.xpath("//mat-icon[text()='search']");
+        By searchIcon = By.xpath("//mat-icon[text()='search']");
         By searchField = By.xpath("//input[@data-placeholder='Search customers...']");
         By clientPopUp = By.xpath("//div[@class='customer-info-component ng-star-inserted']");
         By okButtonOnClientPopUp = By.xpath("//span[text()='Ok']");
