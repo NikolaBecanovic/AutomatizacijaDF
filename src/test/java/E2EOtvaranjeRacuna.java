@@ -48,7 +48,9 @@ public class E2EOtvaranjeRacuna {
     //racuni pravnih lica
 
     By racuniPravnaLica = By.xpath("//*[@id='DO-CURRENT-ACCOUNTS-LEproductDetails']/span[1]");
-    By dinarskiPlatniPromet = By.xpath("//*[@id='productDO-CURRENT-ACCOUNTS-RSD-LE']/mat-card-actions/button/span[1]");
+    By dinarskiPlatniPromet = By.xpath("(//span[@class='mat-ripple mat-button-ripple'])[1]");
+    By devizniPlatniPromet = By.xpath("//*[@id='productDO-CURRENT-ACCOUNTS-FOREIGN-LE']/mat-card-actions/button/span[1]");
+    By devizniOsnovniRacun = By.xpath("//*[@id='productDO-CA-FOREIGN-LE']/mat-card-actions/button");
     By osnovniRacun = By.xpath("//*[@id='productDO-CA-LE']/mat-card-actions/button");
     By uslovi = By.xpath("//*[@id='applyForProductButton']/span[1]");
 
@@ -61,22 +63,38 @@ public class E2EOtvaranjeRacuna {
 
     By promenaRole = By.xpath("(//p[@class='mat-tooltip-trigger user-info-display'])[1]");
     By promenaRoleDirektor = By.xpath("//span[text()='Direktor Odeljenja za naplatu spornih potraživanja']");
-    By promenaRoleBranchManager = By.xpath("//span[text()=' Branch manager ']");
+    By promenaRoleBranchManager = By.xpath("//span[text()=' CRM ']");
+    By promenaRoleAML = By.xpath("//span[text()=' AML ']");
+
+    //Izbor racuna za naplatu naknada
+
+    By izaberiteOsnovniRacun = By.xpath("(//div[contains(@id, 'mat-select-value-')])[2]");
+    By osnovniRacunIzabran = By.xpath("(//span[@class='ng-star-inserted'])[1]");
 
     //taskovi
 
     By informacijaCrmTask = By.xpath("//span[text()=' Informacija CRM  - Dodeljeno je Vama ']");
     By dugmeComplete = By.xpath("//span[text()='COMPLETE']");
     By togglePecat = By.xpath("//*[@id='isDiferent']");
-    By izborZakonskogZastupanja = By.xpath("//div[@class='mat-form-field-infix ng-tns-c121-199']");
+    By izborZakonskogZastupanja = By.xpath("(//div[contains(@id, 'mat-select-value-')])[2]");
+    By izaberiteZastupnik = By.xpath("(//div[contains(@id, 'mat-select-value-')])[3]");
     By pojedinacnoZastupanje = By.xpath("//span[text()=' Pojedinačno zastupanje']");
     By dodajteZastupnikaEvidentiranogUCif = By.xpath("//span[text()='Dodajte zastupnika evidentiranog u CIF']");
-    By dodajteZastupnika = By.xpath("//span[@class='mat-select-placeholder mat-select-min-line ng-tns-c236-203 ng-star-inserted']");
-    By biranjeZastupnika = By.xpath("(//span[@class='ng-star-inserted'])[1]");
+    By biranjeZastupnika = By.xpath("(//span[@class='mat-option-text'])[1]");
     By dodajteZastupnikaDugme = By.xpath("//span[text()='DODAJTE ZASTUPNIKA']");
     By zahtevi = By.xpath("//span[text()='Zahtevi']");
     By skipKyc = By.xpath("//span[@class='mat-slide-toggle-bar mat-slide-toggle-bar-no-side-margin']");
 
+
+
+
+
+
+
+
+
+
+    //POCETAK TESTA
 
 
 
@@ -100,13 +118,13 @@ public class E2EOtvaranjeRacuna {
 
     // promjena role
 
-    wait.until(ExpectedConditions.presenceOfElementLocated(promenaRole));
-    driver.findElement(promenaRole).click();
-    wait.until(ExpectedConditions.presenceOfElementLocated(promenaRoleDirektor));
-    driver.findElement(promenaRoleDirektor).click();
-    wait.until(ExpectedConditions.presenceOfElementLocated(promenaRoleBranchManager));
-    driver.findElement(promenaRoleBranchManager).click();
-    driver.findElement(By.xpath("//*[@id='roleSelectionCancelButton']/span[1]")).click();
+    //wait.until(ExpectedConditions.presenceOfElementLocated(promenaRole));
+    //driver.findElement(promenaRole).click();
+    //wait.until(ExpectedConditions.presenceOfElementLocated(promenaRoleAML));
+    //driver.findElement(promenaRoleDirektor).click();
+    //wait.until(ExpectedConditions.presenceOfElementLocated(promenaRoleBranchManager));
+    //driver.findElement(promenaRoleBranchManager).click();
+    //driver.findElement(By.xpath("//*[@id='roleSelectionCancelButton']/span[1]")).click();
 
     //ulazak u katalog proizvoda
 
@@ -127,10 +145,14 @@ public class E2EOtvaranjeRacuna {
 
     wait.until(ExpectedConditions.presenceOfElementLocated(racuniPravnaLica));
     driver.findElement(racuniPravnaLica).click();
-    wait.until(ExpectedConditions.presenceOfElementLocated(dinarskiPlatniPromet));
-    driver.findElement(dinarskiPlatniPromet).click();
-    wait.until(ExpectedConditions.presenceOfElementLocated(osnovniRacun));
-    driver.findElement(osnovniRacun).click();
+    //wait.until(ExpectedConditions.presenceOfElementLocated(dinarskiPlatniPromet));
+    //driver.findElement(dinarskiPlatniPromet).click();
+    wait.until(ExpectedConditions.elementToBeClickable(devizniPlatniPromet));
+    driver.findElement(devizniPlatniPromet).click();
+    //wait.until(ExpectedConditions.presenceOfElementLocated(osnovniRacun));
+    //driver.findElement(osnovniRacun).click();
+    wait.until(ExpectedConditions.elementToBeClickable(devizniOsnovniRacun));
+    driver.findElement(devizniOsnovniRacun).click();
     wait.until(ExpectedConditions.presenceOfElementLocated(uslovi));
     driver.findElement(uslovi).click();
 
@@ -146,7 +168,11 @@ public class E2EOtvaranjeRacuna {
 
     //Izbor računa za naplatu naknada
 
-    Thread.sleep(7000);
+    Thread.sleep(5000);
+    wait.until(ExpectedConditions.elementToBeClickable(izaberiteOsnovniRacun));
+    driver.findElement(izaberiteOsnovniRacun).click();
+    wait.until(ExpectedConditions.elementToBeClickable(osnovniRacunIzabran));
+    driver.findElement(osnovniRacunIzabran).click();
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 
@@ -158,7 +184,7 @@ public class E2EOtvaranjeRacuna {
 
     //Prikaz detatalja racuna sa Odlukom o pecatu
 
-    Thread.sleep(7000);
+    Thread.sleep(5000);
     wait.until(ExpectedConditions.elementToBeClickable(togglePecat));
     driver.findElement(togglePecat).click();
     driver.findElement(dugmeComplete).click();
@@ -171,8 +197,8 @@ public class E2EOtvaranjeRacuna {
     driver.findElement(pojedinacnoZastupanje).click();
     wait.until(ExpectedConditions.elementToBeClickable(dodajteZastupnikaEvidentiranogUCif));
     driver.findElement(dodajteZastupnikaEvidentiranogUCif).click();
-    wait.until(ExpectedConditions.elementToBeClickable(dodajteZastupnika));
-    driver.findElement(dodajteZastupnika).click();
+    wait.until(ExpectedConditions.elementToBeClickable(izaberiteZastupnik));
+    driver.findElement(izaberiteZastupnik).click();
     wait.until(ExpectedConditions.elementToBeClickable(biranjeZastupnika));
     driver.findElement(biranjeZastupnika).click();
     wait.until(ExpectedConditions.elementToBeClickable(dodajteZastupnikaDugme));

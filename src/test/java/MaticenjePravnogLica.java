@@ -3,14 +3,10 @@ import io.github.bonigarcia.wdm.webdriver.OptionsWithArguments;
 import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
@@ -31,7 +27,7 @@ public class MaticenjePravnogLica {
     WebDriver driver = new ChromeDriver(options);
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
     JavascriptExecutor js = (JavascriptExecutor) driver;
-    Actions actions = new Actions(driver);
+    Actions action = new Actions(driver);
 
 
 
@@ -67,7 +63,7 @@ public class MaticenjePravnogLica {
 
     //biranje enrollment levela
 
-    By enrollmentLevel = By.xpath("//*[@id='mat-select-value-11']/span");
+    By enrollmentLevel = By.xpath("//span[@class='mat-select-placeholder mat-select-min-line ng-tns-c236-31 ng-star-inserted']");
     By prospect = By.xpath("//span[text()=' Prospect']");
     By klijent = By.xpath("//span[text()=' Klijent']");
     By startProcess = By.xpath("//span[text()='Start process']");
@@ -86,32 +82,32 @@ public class MaticenjePravnogLica {
     //Forma Registration document
 
     By vrsta = By.xpath("//span[@class='mat-select-min-line ng-tns-c236-49 ng-star-inserted']");
-    By registrationDocumentNumber = By.xpath("//*[@id='mat-input-5']");
-    By issuingDate = By.xpath("//*[@id='mat-input-7']");
+    By registrationDocumentNumber = By.xpath("(//input[contains(@id, 'mat-input-')])[1]");
+    By issuingDate = By.xpath("(//input[contains(@id, 'mat-input-')])[4]");
 
     //Forma Legal address
 
-    By mesto = By.xpath("//*[@id='mat-input-17']");
+    By mesto = By.xpath("(//input[contains(@id, 'mat-input-')])[2]");
     By popUp = By.xpath("(//span[@class='ng-star-inserted'])[2]");
-    By street = By.xpath("//*[@id='mat-input-18']");
-    By buildingNo = By.xpath("//*[@id='mat-input-10']");
+    By street = By.xpath("(//input[contains(@id, 'mat-input-')])[4]");
+    By buildingNo = By.xpath("(//input[contains(@id, 'mat-input-')])[5]");
 
     //Forma Landline phone
 
-    By areaCode = By.xpath("//*[@id='mat-input-21']");
-    By number = By.xpath("//*[@id='mat-input-22']");
+    By areaCode = By.xpath("(//input[contains(@id, 'mat-input-')])[2]");
+    By number = By.xpath("(//input[contains(@id, 'mat-input-')])[3]");
 
     //Forma email
 
-    By email = By.xpath("//*[@id='mat-input-25']");
+    By email = By.xpath("(//input[contains(@id, 'mat-input-')])[1]");
 
     //Forma Tax profile
 
-    By taxNumber = By.xpath("//*[@id='mat-input-27']");
+    By taxNumber = By.xpath("(//input[contains(@id, 'mat-input-')])[2]");
 
     //Forma Customer segment
 
-    By customerSegment = By.xpath("//*[@id='mat-input-28']");
+    By customerSegment = By.xpath("(//input[contains(@id, 'mat-input-')])[1]");
     By sme = By.xpath("//span[text()='SME']");
     By corporate = By.xpath("//span[text()='CORPORATE']");
     By agro = By.xpath("//span[text()='AGRO']");
@@ -122,25 +118,25 @@ public class MaticenjePravnogLica {
 
     //Ownership kind polje i opcije iz padajuceg menija
 
-    By ownershipKind = By.xpath("//*[@id='mat-select-value-29']/span");
+    By ownershipKind = By.xpath("(//div[contains(@id, 'mat-select-value-')])[2]");
     By privateEntity = By.xpath("//span[text()=' Identifies an that is owned by private entity(es)']");
     By publicUse = By.xpath("//span[text()=' Identifies an that is dedicated to public use and it is an subset of state owner property']");
     By ownedByState = By.xpath("//span[text()=' Identifies an that is owned by a state']");
 
     //Legal structure polje i NEKE opcije iz padajuceg menija
 
-    By legalStructure = By.xpath("//*[@id='mat-select-value-31']/span");
+    By legalStructure = By.xpath("(//div[contains(@id, 'mat-select-value-')])[3]");
     By doo = By.xpath("//span[text()=' Društvo sa ograničenom odgovornošću']");
     By preduzetnik = By.xpath("//span[text()=' Preduzetnik']");
 
     //Registrovana delatnost firme u CIFu i jedna opcije zbog testa
 
-    By delatnost = By.xpath("//*[@id='mat-input-29']");
-    By bezDelatnosti = By.xpath("//span[text()='0000 – 0000–Bez oznake delatnosti']");
+    By delatnost = By.xpath("//input[contains(@id, 'mat-input-')]");
+    By bezDelatnosti = By.xpath("//span[text()='0000 – 00000–Bez oznake delatnosti']");
 
     //Organization size polje i opcije iz padajuceg menija
 
-    By organizationSize = By.xpath("//*[@id='mat-select-value-33']/span");
+    By organizationSize = By.xpath("(//div[contains(@id, 'mat-select-value-')])[4]");
     By notClassified = By.xpath("//span[text()=' Not classified']");
     By microOrganization = By.xpath("//span[text()=' Micro organization']");
     By smallOrganization = By.xpath("//span[text()=' Small organization']");
@@ -149,21 +145,19 @@ public class MaticenjePravnogLica {
 
     //Residental status polje i opcije iz padajuceg menija
 
-    By residentalStatus = By.xpath("//*[@id='mat-select-value-35']/span");
+    By residentalStatus = By.xpath("(//div[contains(@id, 'mat-select-value-')])[5]");
     By notClassifiedResidental = By.xpath("//span[text()=' Not classified']");
     By domesticCapital = By.xpath("//span[text()=' Domestic capital']");
     By foreignCapital = By.xpath("//span[text()=' Foreign capital']");
     By mixedCapital = By.xpath("//span[text()=' Mixed capital']");
 
-    //Sector structure polje i opcija testiranje za test
-
-    By sectorStructure = By.xpath("//*[@id='mat-select-value-37']/span");
-    By testiranje = By.xpath("//span[text()=' testiranje']");
 
     //Forma Representative
 
-    By zastupnik = By.xpath("//*[@id='mat-input-30']");
-    By zastupnikTest = By.xpath("//span[text()=' Julijan Test ']");
+    By zastupnik = By.xpath("(//input[contains(@id, 'mat-input-')])[1]");
+    By zastupnikTest = By.xpath("//span[text()='Julijan ']");
+    By zastupnikTestKlik = By.xpath("//span[text()=' Julijan Test ']");
+    By okKlik = By.xpath("//span[text()='OK']");
     By addNewEmployment = By.xpath("(//span[@class='mat-button-wrapper'])[9]");
     By employmentPosition = By.xpath("//*[@id='mat-select-value-41']/span");
     By civilServantManagement = By.xpath("//span[text()=' Civil servant – management function']");
@@ -171,38 +165,45 @@ public class MaticenjePravnogLica {
     By executiveDirector = By.xpath("//span[text()=' Executive Director / Senior Management']");
     By employmentDate = By.xpath("//*[@id='mat-input-37']");
     By dugmeSačuvaj = By.xpath("//span[text()='Sačuvaj']");
-    By startDate = By.xpath("//*[@id='mat-input-33']");
+    By startDate = By.xpath("(//input[contains(@id, 'mat-input-')])[4]");
 
     //Forma Owner
 
     By addOwner = By.xpath("//span[text()='Add owner']");
-    By vlasnici = By.xpath("//*[@id='mat-input-0']");
-    By procenatVlasnistva = By.xpath("//*[@id='mat-input-1']");
+    By vlasnici = By.xpath("(//input[contains(@id, 'mat-input-')])[1]");
+    By procenatVlasnistva = By.xpath("(//input[contains(@id, 'mat-input-')])[2]");
 
     //forma Beneficial owner
 
-    By BeneficialOwner = By.xpath("//*[@id='mat-input-5']");
+    By BeneficialOwner = By.xpath("//input[contains(@id, 'mat-input-')]");
     By BeneficialOwnerZastupnikTest = By.xpath("//span[text()=' Test Test ']");
 
     //Forma KYC i neki checkboxevi
 
     By KycTask = By.xpath("//span[text()=' TESTFIRMA / KYC  - Dodeljeno je Vama ']");
-    By pitanjeBr1 = By.xpath("//*[@id='mat-select-value-25']");
-    By CurrentAccount = By.xpath("//span[text()=' Current account']");
-    By pitanjeBr2 = By.xpath("//*[@id='mat-select-value-27']");
-    By TermDeposits = By.xpath("//span[text()=' Term deposits']");
-    By pitanjeBr3 = By.xpath("//*[@id='dinarsOrForeignCurrencies']");
-    By pitanjeBr4 = By.xpath("//*[@id='countryWhereMainPartOfOperationsIsConducted']");
-    By pitanjeBr6 = By.xpath("//*[@id='mat-select-value-29']");
-    By Securities = By.xpath("//span[text()=' Securities']");
-    By praznoPolje = By.xpath("div[class@='cdk-overlay-backdrop cdk-overlay-transparent-backdrop cdk-overlay-backdrop-showing']");
-    By toggleButton = By.xpath("//span[@class='mat-button-wrapper']");
+    By pitanjeBR3 = By.xpath("//*[@id='dinarsOrForeignCurrencies']");
+    By pitanjeBR4 = By.xpath("//*[@id='countryWhereMainPartOfOperationsIsConducted']");
+    By pitanjeBR2 = By.xpath("(//div[contains(@id, 'mat-select-value-')])[3]");
+    By pitanjeBR1 = By.xpath("(//div[contains(@id, 'mat-select-value-')])[2]");
+    By pitanjeBR6 = By.xpath("(//mat-select[contains(@id, 'mat-select-')])[4]");
+    By pitanjeBR1odgovor = By.xpath("//span[text()=' Current account']");
+    By pitanjeBR2odgovor = By.xpath("//span[text()=' Loan to be granted']");
+    By pitanjeBR6odg = By.xpath("//span[text()=' Securities']");
 
     //KYC upload signed documents
 
     By UploadSignedDocument = By.xpath("//span[text()=' TESTFIRMA / KYC / Upload signed documents  - Dodeljeno je Vama ']");
     By KycForm = By.xpath("//span[text()=' • Mandatory']");
-    By DragAndDrop = By.xpath("//span[text()='Drag and drop file or click to upload']");
+    By DragAndDrop = By.xpath("(//mat-icon[@class='mat-icon notranslate material-icons mat-icon-no-color'])[9]");
+
+    //Print and sign documents the of validity data of the legal entity
+
+    By validityDataTask = By.xpath("//span[@class='mat-tooltip-trigger activity-name ng-star-inserted']");
+    By validitityDataUpload = By.xpath("//span[text()=' • Confirmation of the validity of the data of the legal entity']");
+    By dragAndDropValidity = By.xpath("//span[text()='Drag and drop file or click to upload']");
+
+
+
 
 
 
@@ -225,15 +226,13 @@ public class MaticenjePravnogLica {
     wait.until(ExpectedConditions.presenceOfElementLocated(promenaJezikaSrpski));
     driver.findElement(promenaJezikaSrpski).click();
 
-    // promjena role
+    //promjena role sada nije potrebna sa novom verzijom, ostavljam korake ali cu ih zakomentarisati
 
-    wait.until(ExpectedConditions.presenceOfElementLocated(promenaRole));
-    driver.findElement(promenaRole).click();
-    wait.until(ExpectedConditions.presenceOfElementLocated(promenaRoleDirektor));
-    driver.findElement(promenaRoleDirektor).click();
-    wait.until(ExpectedConditions.presenceOfElementLocated(promenaRoleBranchManager));
-    driver.findElement(promenaRoleBranchManager).click();
-    driver.findElement(By.xpath("//*[@id='roleSelectionCancelButton']/span[1]")).click();
+    //wait.until(ExpectedConditions.presenceOfElementLocated(promenaRole));
+    //driver.findElement(promenaRole).click();
+    //wait.until(ExpectedConditions.presenceOfElementLocated(promenaRoleBranchManager));
+    //driver.findElement(promenaRoleBranchManager).click();
+    //driver.findElement(By.xpath("//*[@id='roleSelectionCancelButton']/span[1]")).click();
 
 
     //biranje enrollment levela
@@ -252,7 +251,7 @@ public class MaticenjePravnogLica {
 
     wait.until(ExpectedConditions.elementToBeClickable(idNumber));
     driver.findElement(idNumber).click();
-    driver.findElement(idNumber).sendKeys("55749183");
+    driver.findElement(idNumber).sendKeys("21909912");
     driver.findElement(commercialName).click();
     driver.findElement(commercialName).sendKeys("TESTFIRMA");
     driver.findElement(legalName).click();
@@ -273,22 +272,22 @@ public class MaticenjePravnogLica {
 
     // forma Registration document
 
-    wait.until(ExpectedConditions.elementToBeClickable(vrsta));
-    wait.until(ExpectedConditions.elementToBeClickable(registrationDocumentNumber));
+    wait.until(ExpectedConditions.presenceOfElementLocated(registrationDocumentNumber));
     driver.findElement(registrationDocumentNumber).click();
     driver.findElement(registrationDocumentNumber).sendKeys("12ds3223e12");
     wait.until(ExpectedConditions.elementToBeClickable(issuingDate));
     driver.findElement(issuingDate).click();
     driver.findElement(issuingDate).sendKeys("1. 3. 2023.");
-    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 
     //forma Legal address
 
+    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(mesto));
     driver.findElement(mesto).click();
     driver.findElement(mesto).sendKeys("NOVI SAD");
+
     //ovdje klikcemo na pop up kad ukucamo u polju mesto/ulica
     wait.until(ExpectedConditions.elementToBeClickable(popUp));
     driver.findElement(popUp).click();
@@ -304,6 +303,7 @@ public class MaticenjePravnogLica {
 
     //forma Landline phone
 
+    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(areaCode));
     driver.findElement(areaCode).click();
     driver.findElement(areaCode).sendKeys("13");
@@ -315,6 +315,7 @@ public class MaticenjePravnogLica {
 
     //forma Email
 
+    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(email));
     driver.findElement(email).click();
     driver.findElement(email).sendKeys("rere2@re.re");
@@ -323,16 +324,18 @@ public class MaticenjePravnogLica {
 
     //forma Tax profile
 
+    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(taxNumber));
     driver.findElement(taxNumber).click();
     driver.findElement(taxNumber).clear();
-    driver.findElement(taxNumber).sendKeys("103143815");
+    driver.findElement(taxNumber).sendKeys("113664002");
     Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 
     //forma Customer segment
 
+    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(customerSegment));
     driver.findElement(customerSegment).click();
     wait.until(ExpectedConditions.elementToBeClickable(noSegmet));
@@ -342,6 +345,8 @@ public class MaticenjePravnogLica {
     driver.findElement(dugmeComplete).click();
 
     //forma Organization profile
+
+    Thread.sleep(3000);
 
     wait.until(ExpectedConditions.elementToBeClickable(ownershipKind));
     driver.findElement(ownershipKind).click();
@@ -363,51 +368,57 @@ public class MaticenjePravnogLica {
     driver.findElement(residentalStatus).click();
     wait.until(ExpectedConditions.elementToBeClickable(notClassifiedResidental));
     driver.findElement(notClassified).click();
-    wait.until(ExpectedConditions.elementToBeClickable(sectorStructure));
-    driver.findElement(sectorStructure).click();
-    wait.until(ExpectedConditions.elementToBeClickable(testiranje));
-    driver.findElement(testiranje).click();
-    //Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 
     //forma Representative
 
-    wait.until(ExpectedConditions.elementToBeClickable(zastupnik));
+    Thread.sleep(15000);
+
+    wait.until(ExpectedConditions.presenceOfElementLocated(zastupnik));
     driver.findElement(zastupnik).click();
-    driver.findElement(zastupnik).sendKeys("Julijan Test");
-    wait.until(ExpectedConditions.elementToBeClickable(zastupnikTest));
-    driver.findElement(zastupnikTest).click();
+    driver.findElement(zastupnik).sendKeys("Julijan ");
+    wait.until(ExpectedConditions.elementToBeClickable(zastupnikTestKlik));
+    driver.findElement(zastupnikTestKlik).click();
+    //Thread.sleep(3000);
+    //wait.until(ExpectedConditions.presenceOfElementLocated(okKlik));
+    //driver.findElement(okKlik).click();
+    //wait.until(ExpectedConditions.elementToBeClickable(zastupnikTestKlik));
+    //driver.findElement(zastupnikTestKlik).click();
     wait.until(ExpectedConditions.elementToBeClickable(startDate));
     driver.findElement(startDate).click();
     driver.findElement(startDate).sendKeys("1. 3. 2023.");
-    //Thread.sleep(3000);
+    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 
     //forma Owner
 
+    Thread.sleep(3000);
+
     wait.until(ExpectedConditions.elementToBeClickable(addOwner));
     driver.findElement(addOwner).click();
-    driver.navigate().refresh();
-    wait.until(ExpectedConditions.elementToBeClickable(addOwner));
-    driver.findElement(addOwner).click();
+    //driver.navigate().refresh();
+    //wait.until(ExpectedConditions.elementToBeClickable(addOwner));
+    //driver.findElement(addOwner).click();
     wait.until(ExpectedConditions.elementToBeClickable(vlasnici));
     driver.findElement(vlasnici).click();
     driver.findElement(vlasnici).sendKeys("Julijan test");
-    wait.until(ExpectedConditions.elementToBeClickable(zastupnikTest));
-    driver.findElement(zastupnikTest).click();
+    wait.until(ExpectedConditions.elementToBeClickable(zastupnikTestKlik));
+    driver.findElement(zastupnikTestKlik).click();
     wait.until(ExpectedConditions.elementToBeClickable(procenatVlasnistva));
     driver.findElement(procenatVlasnistva).click();
     driver.findElement(procenatVlasnistva).sendKeys("100");
-    //Thread.sleep(3000);
+    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
-    Thread.sleep(5000);
+    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 
     //forma Beneficial owner
+
+    Thread.sleep(5000);
 
     wait.until(ExpectedConditions.elementToBeClickable(BeneficialOwner));
     driver.findElement(BeneficialOwner).sendKeys("Test Test");
@@ -421,24 +432,46 @@ public class MaticenjePravnogLica {
     Thread.sleep(5000);
     wait.until(ExpectedConditions.elementToBeClickable(KycTask));
     driver.findElement(KycTask).click();
-    wait.until(ExpectedConditions.elementToBeClickable(pitanjeBr4));
-    driver.findElement(pitanjeBr4).click();
-    driver.findElement(pitanjeBr4).sendKeys("Serbia");
-    wait.until(ExpectedConditions.elementToBeClickable(pitanjeBr3));
-    driver.findElement(pitanjeBr3).click();
-    driver.findElement(pitanjeBr3).sendKeys("NO");
-    wait.until(ExpectedConditions.elementToBeClickable(pitanjeBr2));
-    driver.findElement(pitanjeBr2).click();
-    driver.findElement(TermDeposits).click();
-    wait.until(ExpectedConditions.elementToBeClickable(pitanjeBr1));
-    driver.findElement(pitanjeBr1).click();
-    driver.findElement(CurrentAccount).click();
-    Thread.sleep(5000);
-    driver.findElement(pitanjeBr6).click();
-    driver.findElement(Securities).click();
+
+    //popunjavanje KYC forme
+
+    //pitanje br. 3
+
+    wait.until(ExpectedConditions.elementToBeClickable(pitanjeBR3));
+    driver.findElement(pitanjeBR3).click();
+    driver.findElement(pitanjeBR3).sendKeys("YES");
+
+    //pitanje br.4
+
+    wait.until(ExpectedConditions.elementToBeClickable(pitanjeBR4));
+    driver.findElement(pitanjeBR4).click();
+    driver.findElement(pitanjeBR4).sendKeys("Serbia");
+
+    //pitanje br. 2
+
+    wait.until(ExpectedConditions.elementToBeClickable(pitanjeBR2));
+    driver.findElement(pitanjeBR2).click();
+    driver.findElement(pitanjeBR2odgovor).click();
+
+    //pitanje br.1
+
+    wait.until(ExpectedConditions.elementToBeClickable(pitanjeBR1));
+    driver.findElement(pitanjeBR1).click();
+    driver.findElement(pitanjeBR1odgovor).click();
+    action.sendKeys(Keys.ESCAPE).perform();
+
+
+    //pitanje br.6
+
+    action.sendKeys(Keys.ESCAPE).perform();
+    Thread.sleep(7000);
+    wait.until(ExpectedConditions.elementToBeClickable(pitanjeBR6));
+    driver.findElement(pitanjeBR6).click();
+    driver.findElement(pitanjeBR6odg).click();
+    action.sendKeys(Keys.ESCAPE).perform();
+    Thread.sleep(6000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
-    Thread.sleep(5000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 
@@ -448,8 +481,28 @@ public class MaticenjePravnogLica {
     driver.findElement(UploadSignedDocument).click();
     wait.until(ExpectedConditions.elementToBeClickable(KycForm));
     driver.findElement(KycForm).click();
+    Thread.sleep(4000);
     wait.until(ExpectedConditions.elementToBeClickable(DragAndDrop));
-    driver.findElement(DragAndDrop).click();
+    driver.findElement(DragAndDrop).sendKeys("C:\\Users\\nikola.becanovic\\Desktop\\KYC\\KYC Form.pdf");
+    wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
+    driver.findElement(dugmeComplete).click();
+
+    //Print and sign documents the of validity data of the legal entity
+
+    wait.until(ExpectedConditions.elementToBeClickable(validityDataTask));
+    driver.findElement(validityDataTask).click();
+    wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
+    driver.findElement(dugmeComplete).click();
+    wait.until(ExpectedConditions.elementToBeClickable(validitityDataUpload));
+    driver.findElement(validitityDataUpload).click();
+    Thread.sleep(5000);
+    wait.until(ExpectedConditions.elementToBeClickable(dragAndDropValidity));
+    driver.findElement(dragAndDropValidity).sendKeys("C:\\Users\\nikola.becanovic\\Desktop\\KYC\\KYC Form.pdf");
+
+
+
+
+
 
 
 
