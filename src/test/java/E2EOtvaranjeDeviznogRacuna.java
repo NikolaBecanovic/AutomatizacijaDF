@@ -92,7 +92,11 @@ public class E2EOtvaranjeDeviznogRacuna {
         By pitanjeBR2odgovor = By.xpath("//span[text()=' Loan to be granted']");
         By pitanjeBR6odg = By.xpath("//span[text()=' Securities']");
 
-        //Upload signed documents
+        //KYC upload signed documents
+
+        By UploadSignedDocument = By.xpath("//span[text()=' TESTFIRMA / KYC / Upload signed documents  - Dodeljeno je Vama ']");
+        By KycForm = By.xpath("//span[text()=' • Mandatory']");
+        By DragAndDrop = By.xpath("(//mat-icon[@class='mat-icon notranslate material-icons mat-icon-no-color'])[9]");
 
 
 
@@ -148,7 +152,7 @@ public class E2EOtvaranjeDeviznogRacuna {
         wait.until(ExpectedConditions.elementToBeClickable(searchIcon));
         driver.findElement(searchIcon).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(searchField));
-        driver.findElement(searchField).sendKeys("20177268");
+        driver.findElement(searchField).sendKeys("20441402");
         wait.until(ExpectedConditions.elementToBeClickable(clientPopUp));
         driver.findElement(clientPopUp).click();
         driver.findElement(okButtonOnClientPopUp).click();
@@ -267,15 +271,28 @@ public class E2EOtvaranjeDeviznogRacuna {
         driver.findElement(pitanjeBR6).click();
         driver.findElement(pitanjeBR6odg).click();
         action.sendKeys(Keys.ESCAPE).perform();
-        //wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
-       //codriver.findElement(dugmeComplete).click();
+        wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
+        driver.findElement(dugmeComplete).click();
 
         //Print and sign documents
 
-        //wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
-        //driver.findElement(dugmeComplete).click();
+        Thread.sleep(5000);
+        wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
+        driver.findElement(dugmeComplete).click();
 
         //Upload signed documents
+
+        Thread.sleep(5000);
+        wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
+        driver.findElement(dugmeComplete).click();
+
+        //Upload signed documents
+
+        wait.until(ExpectedConditions.elementToBeClickable(DragAndDrop));
+        driver.findElement(DragAndDrop).sendKeys("C:\\Users\nikola.becanovic\\Desktop\\KYC\\KYC Form.pdf");
+        wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
+        driver.findElement(dugmeComplete).click();
+
 
 
 
