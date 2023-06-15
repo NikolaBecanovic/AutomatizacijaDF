@@ -168,7 +168,6 @@ public class E2EOtvaranjeRacuna {
 
     //Izbor računa za naplatu naknada
 
-    Thread.sleep(5000);
     wait.until(ExpectedConditions.elementToBeClickable(izaberiteOsnovniRacun));
     driver.findElement(izaberiteOsnovniRacun).click();
     wait.until(ExpectedConditions.elementToBeClickable(osnovniRacunIzabran));
@@ -178,20 +177,17 @@ public class E2EOtvaranjeRacuna {
 
     //Informacija za Crm
 
-    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 
     //Prikaz detatalja racuna sa Odlukom o pecatu
 
-    Thread.sleep(5000);
     wait.until(ExpectedConditions.elementToBeClickable(togglePecat));
     driver.findElement(togglePecat).click();
     driver.findElement(dugmeComplete).click();
 
     //Izbor tipa zakonskog zastupanja
 
-    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(izborZakonskogZastupanja));
     driver.findElement(izborZakonskogZastupanja).click();
     driver.findElement(pojedinacnoZastupanje).click();
@@ -208,47 +204,39 @@ public class E2EOtvaranjeRacuna {
 
     //Informacije za CRM
 
-    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 
     //Nacin dostave dokumentacije
 
-    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 
     //Potvrda email adrese
 
-    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 
     //Potvrda email adrese
 
-    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 
     //Informacija o sadržaju email poruke
 
-    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 
     //Skip KYC
 
-    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(skipKyc));
     driver.findElement(skipKyc).click();
 
-    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 
     //Uvoz dokumentacije
 
-    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 

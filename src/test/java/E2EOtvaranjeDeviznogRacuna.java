@@ -1,18 +1,25 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.webdriver.OptionsWithArguments;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
+import org.junit.After;
+import org.junit.Before;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+import java.time.Duration;
+
 
 
 public class E2EOtvaranjeDeviznogRacuna {
+
+    private Robot robot;
 
     @Test
 
@@ -25,6 +32,7 @@ public class E2EOtvaranjeDeviznogRacuna {
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(60));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         Actions action = new Actions(driver);
+        robot = new Robot();
 
         //LOKATORI
 
@@ -70,6 +78,7 @@ public class E2EOtvaranjeDeviznogRacuna {
 
         //Prikaz detalja racuna sa Odlukom o pecatu
 
+        By stampDecision = By.xpath("//span[@class='mat-slide-toggle-thumb-container']");
         By togglePecat = By.xpath("//*[@id='isDiferent']");
 
         //Izbor tipa zakonskog zastupanja
@@ -91,32 +100,24 @@ public class E2EOtvaranjeDeviznogRacuna {
         By pitanjeBR1odgovor = By.xpath("//span[text()=' Current account']");
         By pitanjeBR2odgovor = By.xpath("//span[text()=' Loan to be granted']");
         By pitanjeBR6odg = By.xpath("//span[text()=' Securities']");
+        By dugmeComplete1 = By.xpath("//button[@class='mat-focus-indicator mat-button mat-button-base mat-primary ng-star-inserted']");
 
         //KYC upload signed documents
 
         By UploadSignedDocument = By.xpath("//span[text()=' TESTFIRMA / KYC / Upload signed documents  - Dodeljeno je Vama ']");
         By KycForm = By.xpath("//span[text()=' • Mandatory']");
-        By DragAndDrop = By.xpath("(//mat-icon[@class='mat-icon notranslate material-icons mat-icon-no-color'])[9]");
+        By DragAndDrop = By.xpath("(//mat-icon[@class='mat-icon notranslate material-icons mat-icon-no-color'])[8]");
 
+        //Uvoz dokumentacije KDP
 
+        By Kdp = By.xpath("(//div[@class='mat-tooltip-trigger text-overflow-dot col-4'])[1]");
+        By KdpUpload = By.xpath("(//label[@class='upload-placeholder ng-star-inserted'])[1]");
 
+        //Validacija dokumentacije i zahteva
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        By validacijaZahtevaTask = By.xpath("//div[@class='ng-tns-c483-36']");
+        By rezultatValidacije = By.xpath("(//mat-select[contains(@id, 'mat-select-')])[2]");
+        By pozitivnaValidacija = By.xpath("//span[text()=' Pozitivna']");
 
 
 
@@ -131,12 +132,11 @@ public class E2EOtvaranjeDeviznogRacuna {
         driver.get("https://digital-agent.cabank.co.yu/dfrontline/agent/dashboard");
         driver.manage().window().maximize();
         wait.until(ExpectedConditions.presenceOfElementLocated(username));
-        driver.findElement(username).sendKeys("nikola.becanovic");
+        driver.findElement(username).sendKeys("milica.milosavljevic");
         driver.findElement(password).sendKeys("Test123456#");
         driver.findElement(logIn).click();
 
         //promjena jezika
-        Thread.sleep(7000);
         wait.until(ExpectedConditions.presenceOfElementLocated(promenaJezika));
         driver.findElement(promenaJezika).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(promenaJezikaSrpski));
@@ -152,7 +152,7 @@ public class E2EOtvaranjeDeviznogRacuna {
         wait.until(ExpectedConditions.elementToBeClickable(searchIcon));
         driver.findElement(searchIcon).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(searchField));
-        driver.findElement(searchField).sendKeys("20441402");
+        driver.findElement(searchField).sendKeys("20177268");
         wait.until(ExpectedConditions.elementToBeClickable(clientPopUp));
         driver.findElement(clientPopUp).click();
         driver.findElement(okButtonOnClientPopUp).click();
@@ -173,13 +173,12 @@ public class E2EOtvaranjeDeviznogRacuna {
 
         wait.until(ExpectedConditions.elementToBeClickable(informacijaCrmTask));
         driver.findElement(informacijaCrmTask).click();
-        Thread.sleep(7000);
         wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
         driver.findElement(dugmeComplete).click();
 
+
         //Izbor racuna za naplatu naknada
 
-        Thread.sleep(7000);
         wait.until(ExpectedConditions.elementToBeClickable(izaberiteOsnovniRacun));
         driver.findElement(izaberiteOsnovniRacun).click();
         wait.until(ExpectedConditions.elementToBeClickable(osnovniRacunIzabran));
@@ -189,20 +188,32 @@ public class E2EOtvaranjeDeviznogRacuna {
 
         //Informacija za CRM
 
-        Thread.sleep(5000);
         wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
         driver.findElement(dugmeComplete).click();
+
+        /*
+
 
         //Prikaz detalja racuna sa Odlukom o pecatu
 
         wait.until(ExpectedConditions.elementToBeClickable(togglePecat));
         driver.findElement(togglePecat).click();
+        Thread.sleep(5000);
         wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
         driver.findElement(dugmeComplete).click();
 
+         */
+
+        //Stamp decision
+
+        wait.until(ExpectedConditions.elementToBeClickable(stampDecision));
+        driver.findElement(stampDecision).click();
+        wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
+        driver.findElement(dugmeComplete).click();
+
+
         //Izbor tipa zakonskog zastupanja
 
-        Thread.sleep(7000);
         wait.until(ExpectedConditions.elementToBeClickable(izborZakonskogZastupanja));
         driver.findElement(izborZakonskogZastupanja).click();
         driver.findElement(pojedinacnoZastupanje).click();
@@ -219,19 +230,16 @@ public class E2EOtvaranjeDeviznogRacuna {
 
         //Nacin dostave dokumentacije
 
-        Thread.sleep(7000);
         wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
         driver.findElement(dugmeComplete).click();
 
         //Potvrda email adrese
 
-        Thread.sleep(7000);
         wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
         driver.findElement(dugmeComplete).click();
 
         //Informacija o sadrzaju email poruke
 
-        Thread.sleep(7000);
         wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
         driver.findElement(dugmeComplete).click();
 
@@ -266,7 +274,6 @@ public class E2EOtvaranjeDeviznogRacuna {
         //pitanje br.6
 
         action.sendKeys(Keys.ESCAPE).perform();
-        Thread.sleep(7000);
         wait.until(ExpectedConditions.elementToBeClickable(pitanjeBR6));
         driver.findElement(pitanjeBR6).click();
         driver.findElement(pitanjeBR6odg).click();
@@ -276,45 +283,77 @@ public class E2EOtvaranjeDeviznogRacuna {
 
         //Print and sign documents
 
-        Thread.sleep(5000);
-        wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
-        driver.findElement(dugmeComplete).click();
+        wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete1));
+        driver.findElement(dugmeComplete1).click();
+
 
         //Upload signed documents
-
-        Thread.sleep(5000);
-        wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
-        driver.findElement(dugmeComplete).click();
-
-        //Upload signed documents
-
+        wait.until(ExpectedConditions.elementToBeClickable(KycForm));
+        driver.findElement(KycForm).click();
         wait.until(ExpectedConditions.elementToBeClickable(DragAndDrop));
-        driver.findElement(DragAndDrop).sendKeys("C:\\Users\nikola.becanovic\\Desktop\\KYC\\KYC Form.pdf");
+        driver.findElement(DragAndDrop).click();
+
+        // Otvori dijalog za odabir datoteke
+        StringSelection stringSelection = new StringSelection("C:\\Users\\nikola.becanovic\\Desktop\\KYC\\KYC Form.pdf");
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+        robot.setAutoDelay(1000);
+
+        // Simulira pritisak na dugmad CTRL+V za zalijepiti putanju do datoteke
+
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+        robot.setAutoDelay(1000);
+
+        // Simulira pritisak na Enter  za potvrdu odabira datoteke
+
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
         wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
         driver.findElement(dugmeComplete).click();
+        System.out.println("Korisnik je uspješno uradio upload KYC forme.");
+
+        //Uvoz dokumentacije
+
+        wait.until(ExpectedConditions.elementToBeClickable(Kdp));
+        driver.findElement(Kdp).click();
+        wait.until(ExpectedConditions.elementToBeClickable(KdpUpload));
+        driver.findElement(KdpUpload).click();
+
+        //Upload Kdp-a
+
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+        robot.setAutoDelay(1000);
+
+        // Simulira pritisak na dugmad CTRL+V za zalijepiti putanju do datoteke
+
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+        robot.setAutoDelay(1000);
+
+        // Simulira pritisak na Enter  za potvrdu odabira datoteke
+
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
+
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete1));
+        driver.findElement(dugmeComplete1).click();
 
 
+        //Validacija dokumentacije i zahteva
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        wait.until(ExpectedConditions.elementToBeClickable(validacijaZahtevaTask));
+        driver.findElement(validacijaZahtevaTask).click();
+        wait.until(ExpectedConditions.elementToBeClickable(rezultatValidacije));
+        driver.findElement(rezultatValidacije).click();
+        wait.until(ExpectedConditions.elementToBeClickable(pozitivnaValidacija));
+        driver.findElement(pozitivnaValidacija).click();
+        wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
+        driver.findElement(dugmeComplete).click();
 
 
     }

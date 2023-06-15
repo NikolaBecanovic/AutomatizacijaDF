@@ -144,7 +144,6 @@ public class E2EMaticenjeFizickogLica {
         driver.findElement(dugmeComplete).click();
         wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
         driver.findElement(dugmeComplete).click();
-        Thread.sleep(3000);
         wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
         driver.findElement(dugmeComplete).click();
 
@@ -153,7 +152,6 @@ public class E2EMaticenjeFizickogLica {
         driverEdge.get("https://digital-agent.cabank.co.yu/dfrontline/agent");
         driverEdge.manage().window().maximize();
         driverEdge.navigate().refresh();
-        Thread.sleep(4000);
         wait.until(ExpectedConditions.presenceOfElementLocated(usernameEdge));
         driverEdge.findElement(usernameEdge).click();
         driverEdge.findElement(usernameEdge).sendKeys("backOffice");

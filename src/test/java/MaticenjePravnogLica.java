@@ -175,8 +175,6 @@ public class MaticenjePravnogLica {
 
 
 
-
-
     //POCETAK TESTA
 
     //logovanje
@@ -199,7 +197,6 @@ public class MaticenjePravnogLica {
 
     System.out.println("Korisnik je uspjesno promijenio jezik");
 
-
     //biranje enrollment levela
 
     wait.until(ExpectedConditions.elementToBeClickable(cif));
@@ -217,7 +214,7 @@ public class MaticenjePravnogLica {
 
     wait.until(ExpectedConditions.elementToBeClickable(idNumber));
     driver.findElement(idNumber).click();
-    driver.findElement(idNumber).sendKeys("21911526");
+    driver.findElement(idNumber).sendKeys("67030664");
     driver.findElement(commercialName).click();
     driver.findElement(commercialName).sendKeys("TESTFIRMA");
     driver.findElement(legalName).click();
@@ -225,17 +222,14 @@ public class MaticenjePravnogLica {
     driver.findElement(establishmentDate).click();
     driver.findElement(establishmentDate).sendKeys("1. 1. 1970.");
     driver.findElement(dugmeComplete).click();
-    Thread.sleep(5000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeZatvori));
     driver.findElement(dugmeZatvori).click();
-    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
     System.out.println("Korisnik je uspješno unio osnovne podatke.");
 
     //stranica AML score
 
-    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
 
@@ -253,7 +247,6 @@ public class MaticenjePravnogLica {
 
     //forma Legal address
 
-    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(mesto));
     driver.findElement(mesto).click();
     driver.findElement(mesto).sendKeys("NOVI SAD");
@@ -275,7 +268,7 @@ public class MaticenjePravnogLica {
 
     //forma Landline phone
 
-    Thread.sleep(3000);
+
     wait.until(ExpectedConditions.elementToBeClickable(areaCode));
     driver.findElement(areaCode).click();
     driver.findElement(areaCode).sendKeys("13");
@@ -288,7 +281,6 @@ public class MaticenjePravnogLica {
 
     //forma Email
 
-    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(email));
     driver.findElement(email).click();
     driver.findElement(email).sendKeys("rere2@re.re");
@@ -298,31 +290,25 @@ public class MaticenjePravnogLica {
 
     //forma Tax profile
 
-    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(taxNumber));
     driver.findElement(taxNumber).click();
     driver.findElement(taxNumber).clear();
-    driver.findElement(taxNumber).sendKeys("113674821");
-    Thread.sleep(3000);
+    driver.findElement(taxNumber).sendKeys("113719584");
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
     System.out.println("Korisnik je uspješno unio PIB pravnog lica.");
 
     //forma Customer segment
 
-    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(customerSegment));
     driver.findElement(customerSegment).click();
     wait.until(ExpectedConditions.elementToBeClickable(noSegmet));
     driver.findElement(noSegmet).click();
-    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
     System.out.println("Korisnik je uspješno izabrao segment pravnog lica.");
 
     //forma Organization profile
-
-    Thread.sleep(3000);
 
     wait.until(ExpectedConditions.elementToBeClickable(ownershipKind));
     driver.findElement(ownershipKind).click();
@@ -349,8 +335,6 @@ public class MaticenjePravnogLica {
 
     //forma Representative
 
-    Thread.sleep(15000);
-
     wait.until(ExpectedConditions.presenceOfElementLocated(zastupnik));
     driver.findElement(zastupnik).click();
     driver.findElement(zastupnik).sendKeys("Julijan T");
@@ -359,14 +343,11 @@ public class MaticenjePravnogLica {
     wait.until(ExpectedConditions.elementToBeClickable(startDate));
     driver.findElement(startDate).click();
     driver.findElement(startDate).sendKeys("1. 3. 2023.");
-    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
     System.out.println("Korisnik je uspješno unio zastpunika pravnog lica.");
 
     //forma Owner
-
-    Thread.sleep(3000);
 
     wait.until(ExpectedConditions.elementToBeClickable(addOwner));
     driver.findElement(addOwner).click();
@@ -378,17 +359,13 @@ public class MaticenjePravnogLica {
     wait.until(ExpectedConditions.elementToBeClickable(procenatVlasnistva));
     driver.findElement(procenatVlasnistva).click();
     driver.findElement(procenatVlasnistva).sendKeys("100");
-    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
-    Thread.sleep(3000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
     System.out.println("Korisnik je uspješno unio vlasnika pravnog lica.");
 
     //forma Beneficial owner
-
-    Thread.sleep(5000);
 
     wait.until(ExpectedConditions.elementToBeClickable(BeneficialOwner));
     driver.findElement(BeneficialOwner).sendKeys("Test Test");
@@ -400,7 +377,6 @@ public class MaticenjePravnogLica {
 
     //forma KYC
 
-    Thread.sleep(5000);
     wait.until(ExpectedConditions.elementToBeClickable(KycTask));
     driver.findElement(KycTask).click();
 
@@ -435,12 +411,10 @@ public class MaticenjePravnogLica {
     //pitanje br.6
 
     action.sendKeys(Keys.ESCAPE).perform();
-    Thread.sleep(7000);
     wait.until(ExpectedConditions.elementToBeClickable(pitanjeBR6));
     driver.findElement(pitanjeBR6).click();
     driver.findElement(pitanjeBR6odg).click();
     action.sendKeys(Keys.ESCAPE).perform();
-    Thread.sleep(6000);
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
     driver.findElement(dugmeComplete).click();
     wait.until(ExpectedConditions.elementToBeClickable(dugmeComplete));
@@ -482,16 +456,13 @@ public class MaticenjePravnogLica {
 
         //Otvaranje taska validity data of the legal entity
 
-        Thread.sleep(5000);
         wait.until(ExpectedConditions.presenceOfElementLocated(validityDataTask));
         driver.findElement(validityDataTask).click();
-        Thread.sleep(5000);
         wait.until(ExpectedConditions.presenceOfElementLocated(dugmeComplete));
         driver.findElement(dugmeComplete).click();
 
         //upload signed documents of the validity data
 
-        Thread.sleep(5000);
         wait.until(ExpectedConditions.elementToBeClickable(validitityDataUpload));
         driver.findElement(validitityDataUpload).click();
         wait.until(ExpectedConditions.elementToBeClickable(dragAndDropValidity));
@@ -523,14 +494,6 @@ public class MaticenjePravnogLica {
         System.out.println(" Klijent je uspješno umatičen. ");
 
         // KRAJ TESTA
-
-
-
-
-
-
-
-
 
 
     }
